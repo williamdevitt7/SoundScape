@@ -1,19 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Component } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { AppLoading } from 'expo';
 
-export default function App() {
+// screen imports from src
+
+import FirstScreen from './src/screens/FirstScreen';
+
+// The main hub for our app - think of it as a central train station for the user to navigate from
+
+const Stack = createStackNavigator();
+
+export default class App extends React.Component {
+  state = {
+  };
+
+  render() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Init">
+        <Stack.Screen name="Init" component={FirstScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
+ }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

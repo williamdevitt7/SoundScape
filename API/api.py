@@ -44,7 +44,8 @@ def add_user():
         password = request.args['password']
 
         # Insert new user
-        cursor.execute('INSERT INTO users VALUES (`' + username + '`, `' + password + '`)')
+        cursor.execute('INSERT INTO users(username, password) VALUES (%s, %s);', (username, password))
+
     # If argument list is invalid respond as an error
     else:
         make_response('Invalid arguments', 406)

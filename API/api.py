@@ -46,6 +46,9 @@ def add_user():
         # Insert new user
         cursor.execute('INSERT INTO users(username, password) VALUES (%s, %s);', (username, password))
 
+        # Commit changes
+        conn.commit()
+
     # If argument list is invalid respond as an error
     else:
         make_response('Invalid arguments', 406)

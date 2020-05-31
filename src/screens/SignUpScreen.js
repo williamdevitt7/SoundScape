@@ -5,7 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { tester } from '../helpers/Helpers'
 //import defaultStyles from './stylesheet';
 //import Autocomplete from 'react-native-autocomplete-input';
-//import NavigationBar from './NavigationBar';
 
 // Sign-up screen: for users to create their logins specific to our app,
 // and connect their spotify / lastfm account.

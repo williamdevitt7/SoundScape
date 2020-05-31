@@ -11,6 +11,7 @@ web-build/
 web-report/
 API/venv/
 API/.idea/
+secrets
 
 # macOS
 .DS_Store

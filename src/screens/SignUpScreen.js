@@ -77,6 +77,7 @@ class SignUpScreen extends React.Component {
       <SafeAreaView style = {styles.container}>
        <View style={{alignItems: 'center', justifyContent: 'center'}}>
        <TextInput
+        clearButtonMode = "always"
         placeholder = "Enter Username"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}

@@ -10,6 +10,24 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+# View Users
+@app.route('/users', methods=['GET'])
+def users():
+    # Create connection to database
+    conn = pymysql.connect(host='18.204.82.238', user='AppUser', password='@LymanOW!', db='soundscapedb')
+
+    # Create cursor
+    cursor = conn.cursor()
+
+    # Produce displayable data
+    cursor.execute('SELECT * from users')
+    ret = cursor.fetchall()
+
+    # Close connection
+    conn.close()
+
+    return jsonify(ret)
+
 # Add user
 @app.route('/users/add', methods=['GET'])
 def add_user():
@@ -41,4 +59,4 @@ def add_user():
     return jsonify(ret)
 
 # Run the application
-app.run(debug=True)
+app.run(host='0.0.0.0')

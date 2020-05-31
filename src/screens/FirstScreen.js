@@ -4,7 +4,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //import defaultStyles from './stylesheet';
 //import Autocomplete from 'react-native-autocomplete-input';
-//import NavigationBar from './NavigationBar';
 
 // This is the landing screen  - appears when you open the app for the first time.
 // On launch, have this only show to new users
@@ -24,10 +23,20 @@ class FirstScreen extends React.Component {
         <Text> Along with button that calls a function to validate login,  </Text>
         <Text> and if validated, navigates to the home screen </Text>
        </View>
-         <TouchableOpacity
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Login')}>
+           <Text>Login here!</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
            style={styles.button}
            onPress={() => navigation.navigate('Sign Up')}>
             <Text>Signup here!</Text>
+         </TouchableOpacity>
+         <TouchableOpacity
+           style={styles.button}
+           onPress={() => navigation.navigate('Home')}>
+            <Text>(Development only) Home Screen</Text>
          </TouchableOpacity>
       </SafeAreaView>
     );

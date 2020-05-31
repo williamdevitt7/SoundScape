@@ -10,6 +10,7 @@ import { AppLoading } from 'expo';
 import FirstScreen from './src/screens/FirstScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 // The main hub for our app - think of it as a central station for the user to navigate from
 
@@ -26,6 +27,7 @@ export default class App extends React.Component {
         <Stack.Screen name="Welcome!" component={FirstScreen} />
         <Stack.Screen name="Sign Up" component={SignUpScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

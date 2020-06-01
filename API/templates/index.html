@@ -23,6 +23,10 @@
 	    #usage {
 	    	text-decoration: underline;
 	    }
+
+	    #call {
+	    	color: #008d91;
+	    }
     </style>
 </head>
 <body>
@@ -42,14 +46,14 @@
 		<li>
 			<b>View/Get (All):</b>
 			<br>
-			- http://18.204.82.238:5000/users <br>
+			- <span id="call">http://18.204.82.238:5000/users</span> <br>
 			Returns all the users in the users table as a JSON
 		</li>
 		<br>
 		<li>
 			<b>Add (Signup):</b>
 			<br>
-			- http://18.204.82.238:5000/users/add <br>
+			- <span id="call">http://18.204.82.238:5000/users/add</span> <br>
 			<span id="usage">Usage:</span> ?username=__&password=__ (appended after url)<br>
 			Returns the new users data as a JSON
 		</li>

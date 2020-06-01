@@ -72,6 +72,8 @@ class SignUpScreen extends React.Component {
        <View style={{alignItems: 'center', justifyContent: 'center'}}>
        <TextInput
         clearButtonMode = "always"
+        autoCapitalize = "none"
+        autoCorrect = "false"
         placeholder = "Enter Username"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}
@@ -79,7 +81,10 @@ class SignUpScreen extends React.Component {
         onChangeText = {this.handleUsername}
       />
        <TextInput
+        secureTextEntry = "true"
         clearButtonMode="always"
+        autoCapitalize = "none"
+        autoCorrect = "false"
         placeholder = "Enter Password"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}
@@ -87,7 +92,10 @@ class SignUpScreen extends React.Component {
         onChangeText = {this.handlePassword}
       />
        <TextInput
+        secureTextEntry = "true"
         clearButtonMode="always"
+        autoCapitalize = "none"
+        autoCorrect = "false"
         placeholder = "Confirm Password"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}
@@ -108,7 +116,7 @@ class SignUpScreen extends React.Component {
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
+    //backgroundColor: "#DDDDDD",
     padding: 10
   }
 });

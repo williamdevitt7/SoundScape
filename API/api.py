@@ -43,6 +43,10 @@ def add_user():
         username = request.args['username']
         password = request.args['password']
 
+        # Test if user already exists
+         # TODODODODDODODODODODDODODODOD
+        #make_response('User with that username already exists', 407)
+
         # Insert new user
         cursor.execute('INSERT INTO users(username, password) VALUES (%s, %s);', (username, password))
 

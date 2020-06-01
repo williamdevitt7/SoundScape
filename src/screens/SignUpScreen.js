@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, Keyboard, TouchableOpacity, Dimensions, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { tester } from '../helpers/Helpers'
 import defaultStyles from './stylesheet';
 //import Autocomplete from 'react-native-autocomplete-input';
 
@@ -26,7 +25,6 @@ class SignUpScreen extends React.Component {
     }
 
     //binders
-    this.CallTester = this.CallTester.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handlePasswordConfirm = this.handlePasswordConfirm.bind(this);
@@ -35,10 +33,6 @@ class SignUpScreen extends React.Component {
   }; //end constructor(props)
 
   // function defintions
-
-  CallTester(){ //example
-    tester();
-  }
 
   handleUsername(text) {
     this.setState({ username: text });

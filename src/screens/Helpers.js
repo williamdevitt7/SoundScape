@@ -14,9 +14,9 @@ export const tester = () => {
 // single parameter GET (for example, pass it a link to a lastfm api) most common
 // return an array of the JSON data
 
-getRequest(link) {
+/* export const getRequest = (x) => {
   var data = [];
-  fetch(link, {
+  fetch(x, {
     method: 'GET',
     headers: {
       Accept: "application/json",
@@ -26,7 +26,7 @@ getRequest(link) {
     .then((response) => response.json()) //success
     .then((responseJson) => {
       data.push((responseJson));
-      console.log(this.state.api_response); //testing (state storage works!)
+      alert(responseJson);
     })
     //on fail
     .catch(error => {
@@ -34,8 +34,8 @@ getRequest(link) {
       console.error(error);
     });
     return data;
-} //end getRequest
-
+}; //end getRequest
+ */
 // no parameter get - specialized, multiple functions that have specific purposes
 
 // POST, PUT , etc

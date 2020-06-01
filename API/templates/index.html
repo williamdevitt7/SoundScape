@@ -2,19 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SoundScape DB API</title>
+    <title>SoundScape Database API</title>
+    <style type="text/css">
+    	body {
+    		background-color: #559e71; 
+			font-family: Arial;
+		}
+
+		h1 {
+			text-align: center;
+  			color: #1a1a1a;
+		}
+
+		#calls {
+			text-align: left;
+	    	color: #1a1a1a;
+	    	margin-left: 15px;
+	    }
+
+	    #usage {
+	    	text-decoration: underline;
+	    }
+    </style>
 </head>
-<body style="background-color: #559e71">
-	<h1 style="text-align: center;
-    			color: black;">
-		This is the documentation for the API of the SoundScape backend
+<body>
+	<h1 id="usage">
+		SoundScape Backend API Documentation
 	</h1>
 
 <br><br>
 
-<h2 style="text-align: left;
-    		color: black;">
-	Poggers
-</h2>
+<!-- Actual calls -->
+<div id="calls">
+	<h2>
+		Users:
+	</h2>
+
+	<ul>
+		<li>
+			<b>View/Get (All):</b>
+			<br>
+			- http://18.204.82.238:5000/users <br>
+			Returns all the users in the users table as a JSON
+		</li>
+		<br>
+		<li>
+			<b>Add (Signup):</b>
+			<br>
+			- http://18.204.82.238:5000/users/add <br>
+			<span id="usage">Usage:</span> ?username=__&password=__ (appended after url)<br>
+			Returns the new users data as a JSON
+		</li>
+	</ul>
+</div>
 </body>
 </html>

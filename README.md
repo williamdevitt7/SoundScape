@@ -11,4 +11,7 @@ Then clone this repo, cd into it, and run "npm install" to install dependencies.
 
 # Viewing the App:
 
-Install Expo on your phone, npm start the project on your machine, and scan the QR code that appears in the cmd line or on the browser that appears. (typically tunnel mode works best, can be finecky)
+Install Expo on your phone, npm start the project on your machine from PowerShell, and scan the QR code that appears in the cmd line or on the browser that appears. (typically tunnel mode works best, can be finecky)
+
+# Viewing Python Backend Web API
+Visit http://18.204.82.238:5000/

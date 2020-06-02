@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import pandas as pd
-import pymysql, sqlalchemy, os
+from pandas import DataFrame
+from sqlalchemy import create_engine
+import pymysql, os
 
 # Create the application instance
 app = Flask(__name__)
@@ -44,8 +46,14 @@ def add_user():
         password = request.args['password']
 
         # Test if user already exists
-         # TODODODODDODODODODODDODODODOD
-        #make_response('User with that username already exists', 407)
+        users_df = DataFrame(data=pd.read_sql("SELECT * FROM users", conn), index=None)
+
+        for name in users_df["username"]:
+            if username == name:
+                response = make_response('User with that username already exists')
+                response.status_code = 207
+                conn.close()
+                return response
 
         # Insert new user
         cursor.execute('INSERT INTO users(username, password) VALUES (%s, %s);', (username, password))
@@ -55,13 +63,50 @@ def add_user():
 
     # If argument list is invalid respond as an error
     else:
-        make_response('Invalid arguments', 406)
+        response = make_response('Invalid arguments')
+        response.status_code = 206
+        conn.close()
+        return response
 
     # Produce displayable data
     cursor.execute('SELECT * from users')
     ret = cursor.fetchall()
 
     # Close connection
+    conn.close()
+
+    return jsonify(ret)
+
+# Delete User (probably only used in a backend sense)
+@app.route('/users/delete', methods=['GET'])
+def delete_user():
+    # Create connection to database
+    conn = pymysql.connect(host='18.204.82.238', user='AppUser', password='@LymanOW!', db='soundscapedb')
+
+    # Create cursor
+    cursor = conn.cursor()
+
+    # Check for valid parameters
+    if "username" not in request.args.keys():
+        response = make_response('There was no username parameter given')
+        response.status_code = 208 # Username not passed
+        conn.close()
+        return response
+
+    # Get the username
+    username = request.args['username']
+
+    # Delete from database
+    cursor.execute("DELETE FROM `users` WHERE `username` = %s;", username)
+
+    # Commit change
+    conn.commit()
+
+    # Get return value
+    cursor.execute("SELECT * FROM users")
+    ret = cursor.fetchall()
+
+    #Close connection
     conn.close()
 
     return jsonify(ret)

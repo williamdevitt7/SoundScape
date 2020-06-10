@@ -12,6 +12,8 @@ web-report/
 API/venv/
 API/.idea/
 secrets
+API/admin.txt
+API/test_post.py
 
 # macOS
 .DS_Store

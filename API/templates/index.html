@@ -44,9 +44,10 @@
 
 	<ul>
 		<li>
-			<b>View/Get (All):</b>
+			<b>View (All):</b>
 			<br>
 			- <span id="call">http://18.204.82.238:5000/users</span> <br>
+			<span id="usage">Usage:</span> ?admin=__ (appended after url)<br>
 			Returns all the users in the users table as a JSON
 		</li>
 		<br>
@@ -54,8 +55,23 @@
 			<b>Add (Signup):</b>
 			<br>
 			- <span id="call">http://18.204.82.238:5000/users/add</span> <br>
-			<span id="usage">Usage:</span> ?username=__&password=__ (appended after url)<br>
+			<span id="usage">Usage:</span> ?admin=__&username=__&password=__ (appended after url)<br>
 			Returns the new users data as a JSON
+		</li><br>
+		<li>
+			<b>Delete/Remove:</b>
+			<br>
+			- <span id="call">http://18.204.82.238:5000/users/delete</span> <br>
+			<span id="usage">Usage:</span> ?admin=__&username=__&password=__ (appended after url)<br>
+			Returns the new users data as a JSON
+		</li>
+		<br>
+		<li>
+			<b>Login:</b>
+			<br>
+			- <span id="call">http://18.204.82.238:5000/login</span> <br>
+			<span id="usage">Usage:</span> ?admin=__&username=__&password=__ (appended after url)<br>
+			Returns that user's information
 		</li>
 	</ul>
 </div>

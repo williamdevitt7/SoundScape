@@ -14,8 +14,7 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     //this.callTester();
-    //this.handleGetRequest();
-    this.callGetRequest('https://jsonplaceholder.typicode.com/posts/1');
+    this.callGetRequest('https://reactnative.dev/movies.json');
 
     this.state = {
       requestReturn: [],
@@ -39,18 +38,16 @@ class HomeScreen extends React.Component {
       }
     })
       .then((response) => response.json()) //success
-      .then((responseJson) => {
-        data.push((responseJson));
-        this.setState({ requestReturn: data})
+      .then((json) => {
+        data.push((json));
+        this.setState({ requestReturn: json.movies})
         console.log(this.state.requestReturn)
-        //console.log(this.state.requestReturn);
       })
       //on fail
-      .catch(error => {
+      .catch((error) => {
         alert(JSON.stringify(error));
         console.error(error);
       });
-      return data;
   }
 
   render() {

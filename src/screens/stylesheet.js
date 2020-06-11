@@ -9,6 +9,13 @@ export default defaultStyles = StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'nunito-regular'
   },
+  container1: {
+    flex: 1,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: 'nunito-regular'
+  },
   whiteContainer: {
     width: 334,
     height: 561,

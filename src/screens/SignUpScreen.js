@@ -32,7 +32,7 @@ class SignUpScreen extends React.Component {
     this.handleLastFmUsername = this.handleLastFmUsername.bind(this);
     this.createAccount = this.createAccount.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
-    this.callGetRequest = this.callGetRequest.bind(this);
+    this.postRequest = this.postRequest.bind(this);
   }; //end constructor(props)
 
   // function defintions
@@ -56,7 +56,9 @@ class SignUpScreen extends React.Component {
   validatePassword() {
     if ((this.state.password || this.state.passwordConfirm) == '')
     {
-      alert('Enter password(s)');
+      alert('Enter password(s)!');
+    } else if (this.state.username == '') {
+      alert('Enter a username!');
     } else if (this.state.password === this.state.passwordConfirm) {
       this.createAccount();
     } else {
@@ -65,32 +67,45 @@ class SignUpScreen extends React.Component {
   }
 
   createAccount() {
+    // TODO: Pass lastfm username to database via post request
+    // TODO: pass user data as params in navigation (look at recipEZ)
     // function that passes and adds state values to database
     // this will also navigate to the home screen with specific user data (accounts)
-    alert('make database api calls here');
+    //TODO: might not go in URL string!
+    this.postRequest('http://18.204.82.238:5000/users/add');
+    //alert('make database api calls here');
   }
 
-  // POST or GET request on http://18.204.82.238:5000/users/add?username='+ this.state.username +'&password='+ this.state.password +'
-
-  callGetRequest(x) { // fetches data via get
-    fetch(x, {
-      method: 'GET',
+  postRequest(x) { // fetches data via POST
+    return fetch(x, {
+      method: 'POST',
       headers: {
         Accept: "application/json",
-        "Content-Type" : "application/json"
-      }
+        'Content-Type' : "application/json"
+      },
+      body: JSON.stringify({
+        admin: '@LymanOW!',
+        username: this.state.username,
+        password: this.state.passwordConfirm
+      })
     })
       .then((response) => response.json()) //success
-      .then((json) => {
-        alert((json));
+      .then((responseJson) => {
+        alert(JSON.stringify(responseJson));
+        if (responseJson.status == 200) { //could also be json.status
+          alert("user added to the database succesfully");
+          this.props.navigation.navigate('Home'); //if this doesnt work, try creating a navigation const like in render
+          //navigation.navigate(homeScreen)
+        }
         //set state and etc here
       })
       //on fail
       .catch((error) => {
         alert(JSON.stringify(error));
-        console.error(error);
+        console.log(error);
       });
   }
+
   //////////////////// BEGIN RENDER /////////////////////////
 
   render() {
@@ -101,7 +116,7 @@ class SignUpScreen extends React.Component {
        <TextInput
         clearButtonMode = "always"
         autoCapitalize = "none"
-        autoCorrect = "false"
+        autoCorrect = 'false'
         placeholder = "Enter Username"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}
@@ -109,10 +124,10 @@ class SignUpScreen extends React.Component {
         onChangeText = {this.handleUsername}
       />
        <TextInput
-        secureTextEntry = "true"
+        secureTextEntry = 'true'
         clearButtonMode="always"
         autoCapitalize = "none"
-        autoCorrect = "false"
+        autoCorrect = 'false'
         placeholder = "Enter Password"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}
@@ -120,10 +135,10 @@ class SignUpScreen extends React.Component {
         onChangeText = {this.handlePassword}
       />
        <TextInput
-        secureTextEntry = "true"
+        secureTextEntry = 'true'
         clearButtonMode="always"
         autoCapitalize = "none"
-        autoCorrect = "false"
+        autoCorrect = 'false'
         placeholder = "Confirm Password"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}
@@ -133,7 +148,7 @@ class SignUpScreen extends React.Component {
        <TextInput
         clearButtonMode = "always"
         autoCapitalize = "none"
-        autoCorrect = "false"
+        autoCorrect = 'false'
         placeholder = "Enter last.fm Username"
         style={defaultStyles.textInput}
         onBlur = {Keyboard.dismiss}

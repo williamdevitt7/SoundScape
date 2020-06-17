@@ -18,12 +18,13 @@ class LoginScreen extends React.Component {
   };
 
   this.sendLogin = this.sendLogin.bind(this);
+  this.postRequest = this.postRequest.bind(this);
   this.handleUsername = this.handleUsername.bind(this);
   this.handlePassword = this.handlePassword.bind(this);
 } //end constructor
 
 sendLogin() {
-  //this.props.navigation.navigate('Home') //or create a new nav const
+  this.postRequest('http://18.204.82.238:5000/login');
 }
 
 handleUsername(text) {
@@ -32,6 +33,34 @@ handleUsername(text) {
 
 handlePassword(text) {
   this.setState({ password: text });
+}
+
+postRequest(x) { // fetches data via POST
+  return fetch(x, {
+    method: 'POST',
+    headers: {
+      Accept: "application/json",
+      'Content-Type' : "application/json"
+    },
+    body: JSON.stringify({
+      admin: '@LymanOW!',
+      username: this.state.username,
+      password: this.state.password
+    })
+  })
+    .then((response) => response.json()) //success
+    .then((responseJson) => {
+      alert(JSON.stringify(responseJson));
+      if (responseJson.status == 200) {
+        alert("user logged in successfully");
+        this.props.navigation.navigate('Home'); //if this doesnt work, try creating a navigation const like in render
+      }
+    })
+    //on fail
+    .catch((error) => {
+      alert(JSON.stringify(error));
+      console.log(error);
+    });
 }
 
 render() {

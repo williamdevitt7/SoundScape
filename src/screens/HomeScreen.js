@@ -38,15 +38,15 @@ class HomeScreen extends React.Component {
     })
       .then((response) => response.json()) //success
       .then((json) => {
-        this.setState({ topLastfmAlbums: json}); //logs the raw JSON object
-        console.log(this.state.topLastfmAlbums.topalbums.album[0].artist.name) //arbitrary test
+        this.setState({ topLastfmAlbums: json}); //logs the raw JSON object into state
+        alert(this.state.topLastfmAlbums.topalbums.album[0].artist.name + ': "' + this.state.topLastfmAlbums.topalbums.album[0].name + '"') //arbitrary test
       })
       //on fail
       .catch((error) => {
         alert(JSON.stringify(error));
         console.log(error);
       }); //end fetch
-
+        //TODO: navigate to the top lastfm albums results screen  this.props.navigation.navigate('screen here'); //if this doesnt work, try creating a navigation const like in render
   } // end function
 
   /*getRequest(x) { // fetches data via get

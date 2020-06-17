@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, Keyboard, TouchableOpacity, Dimensions, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-//import defaultStyles from './stylesheet';
+import defaultStyles from './stylesheet';
 //import Autocomplete from 'react-native-autocomplete-input';
 
 // This is the landing screen  - appears when you open the app for the first time.

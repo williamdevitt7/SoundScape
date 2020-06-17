@@ -11,25 +11,24 @@ import { API_KEY_LASTFM } from '../helpers/lastFmVars'
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-    //this.getRequest('https://reactnative.dev/movies.json');
 
     this.state = {
       topLastfmAlbums: [],
     };
 
-    //this.getRequest = this.getRequest.bind(this);
-    this.apiKey = this.apiKey.bind(this);
-    //this.handleLastfmTopAlbums = this.handleLastfmTopAlbums.bind(this);
+    this.getTopLastfmAlbums = this.getTopLastfmAlbums.bind(this);
+    this.lastfmApiKey = this.lastfmApiKey.bind(this);
+    this.passParams = this.passParams.bind(this);
   }
 
-  apiKey() {
+  lastfmApiKey() {
     var API_KEY = API_KEY_LASTFM();
     return API_KEY;
   }
 
   getTopLastfmAlbums() {
     // fetch data here, then pass it as a param to the album results screen (use recipEZ for easy hints)
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ this.apiKey() +'&format=json', {
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ this.lastfmApiKey() +'&format=json', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -39,37 +38,21 @@ class HomeScreen extends React.Component {
       .then((response) => response.json()) //success
       .then((json) => {
         this.setState({ topLastfmAlbums: json}); //logs the raw JSON object into state
-        alert(this.state.topLastfmAlbums.topalbums.album[0].artist.name + ': "' + this.state.topLastfmAlbums.topalbums.album[0].name + '"') //arbitrary test
+        //console.log(this.state.topLastfmAlbums);
+        //console.log(this.state.topLastfmAlbums.topalbums.album[0].artist.name + ': "' + this.state.topLastfmAlbums.topalbums.album[0].name + '"') //testing
       })
       //on fail
       .catch((error) => {
         alert(JSON.stringify(error));
         console.log(error);
       }); //end fetch
-        //TODO: navigate to the top lastfm albums results screen  this.props.navigation.navigate('screen here'); //if this doesnt work, try creating a navigation const like in render
   } // end function
 
-  /*getRequest(x) { // fetches data via get
-    var data = [];
-    fetch(x, {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        "Content-Type" : "application/json"
-      }
-    })
-      .then((response) => response.json()) //success
-      .then((json) => {
-        data.push((json));
-        this.setState({ requestReturn: json.movies}) //logs the raw JSON object
-        console.log(this.state.requestReturn[4].title) //returns interstellar
-      })
-      //on fail
-      .catch((error) => {
-        alert(JSON.stringify(error));
-        console.error(error);
-      });
-  } */
+  passParams() {
+    this.props.navigation.navigate('LastfmTopAlbums', {
+      response: this.state.topLastfmAlbums,
+    });
+  }
 
   render() {
     const {navigation} = this.props;
@@ -80,7 +63,9 @@ class HomeScreen extends React.Component {
        </View>
        <TouchableOpacity
          style={styles.buttonLeft}
-         onPress={() => this.getTopLastfmAlbums()}>
+         onPress={() => {
+           this.getTopLastfmAlbums()
+           this.passParams()}}>
           <Text>Top Last.fm Albums</Text>
        </TouchableOpacity>
        <TouchableOpacity

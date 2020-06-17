@@ -63,7 +63,7 @@ export default defaultStyles = StyleSheet.create({
     textAlign: 'center',
     paddingLeft: 10,
     paddingRight: 10,
-    fontFamily: 'nunito-bold'
+    //fontFamily: 'nunito-bold'
   },
 
   searchContainer: {
@@ -140,9 +140,26 @@ export default defaultStyles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 65
   },
-  standardButton: {
+  loginButton: {
     alignItems: "center",
-    //backgroundColor: "#DDDDDD",
-    padding: 20
-  }
+    backgroundColor: '#fffafa',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
+    width: 200,
+    borderRadius: 5, //borderRadius curves edges!
+    borderWidth: 1,
+  },
+  signupButton: {
+    alignItems: "center",
+    backgroundColor: '#fffafa',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    width: 200,
+    borderRadius: 5, //borderRadius curves edges!
+    borderWidth: 1,
+  },
 });

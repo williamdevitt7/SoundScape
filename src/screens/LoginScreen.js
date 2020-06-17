@@ -62,7 +62,7 @@ render() {
      />
      </View>
      <TouchableOpacity
-       style={defaultStyles.standardButton}
+       style={defaultStyles.loginButton}
        onPress={() => this.sendLogin()}>
         <Text>Login</Text>
      </TouchableOpacity>

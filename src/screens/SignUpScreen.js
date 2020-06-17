@@ -152,7 +152,7 @@ class SignUpScreen extends React.Component {
      />
        </View>
        <TouchableOpacity
-         style={defaultStyles.standardButton}
+         style={defaultStyles.signupButton}
          onPress={() => this.validatePassword()}>
           <Text>Create Account</Text>
        </TouchableOpacity>

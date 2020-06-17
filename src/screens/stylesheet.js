@@ -11,7 +11,7 @@ export default defaultStyles = StyleSheet.create({
   },
   container1: {
     flex: 1,
-    position: 'absolute',
+    textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: 'nunito-regular'
@@ -139,5 +139,10 @@ export default defaultStyles = StyleSheet.create({
     paddingRight: 32,
     paddingTop: 20,
     paddingBottom: 65
+  },
+  standardButton: {
+    alignItems: "center",
+    //backgroundColor: "#DDDDDD",
+    padding: 20
   }
 });

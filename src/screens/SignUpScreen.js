@@ -8,14 +8,14 @@ import defaultStyles from './stylesheet';
 // Sign-up screen: for users to create their logins specific to our app,
 // and connect their spotify / lastfm account.
 
-// MUST  HIDE PASSWORD IN SECURE WAY
-// ADDITIONALLY, SECURITY MUST BE ADDED
-// ADDITIONALLY, USERNAME DUPLICATE CHECK MUST BE ADDED
+// TODO: USERNAME DUPLICATE CHECK MUST BE ADDED
+// TODO: lastfm username must be passed to the database
+// TODO: make sure this POST request works
+// TODO: on success of account creation, must pass info as params (nav) to Home (see recipEZ)
 
 class SignUpScreen extends React.Component {
   constructor(props) {
     super(props);
-    //this.CallTester();
 
     //state bracket
     this.state = {
@@ -67,11 +67,8 @@ class SignUpScreen extends React.Component {
   }
 
   createAccount() {
-    // TODO: Pass lastfm username to database via post request
-    // TODO: pass user data as params in navigation (look at recipEZ)
     // function that passes and adds state values to database
     // this will also navigate to the home screen with specific user data (accounts)
-    //TODO: might not go in URL string!
     this.postRequest('http://18.204.82.238:5000/users/add');
     //alert('make database api calls here');
   }
@@ -95,9 +92,7 @@ class SignUpScreen extends React.Component {
         if (responseJson.status == 200) { //could also be json.status
           alert("user added to the database succesfully");
           this.props.navigation.navigate('Home'); //if this doesnt work, try creating a navigation const like in render
-          //navigation.navigate(homeScreen)
         }
-        //set state and etc here
       })
       //on fail
       .catch((error) => {
@@ -111,7 +106,7 @@ class SignUpScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <SafeAreaView style = {styles.container1}>
+      <SafeAreaView style = {styles.container}>
        <View style={{alignItems: 'center', justifyContent: 'center'}}>
        <TextInput
         clearButtonMode = "always"
@@ -157,7 +152,7 @@ class SignUpScreen extends React.Component {
      />
        </View>
        <TouchableOpacity
-         style={styles.button}
+         style={defaultStyles.standardButton}
          onPress={() => this.validatePassword()}>
           <Text>Create Account</Text>
        </TouchableOpacity>
@@ -171,7 +166,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     //backgroundColor: "#DDDDDD",
     padding: 10
-  }
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
 
 export default SignUpScreen;

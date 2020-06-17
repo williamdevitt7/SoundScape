@@ -14,6 +14,7 @@ API/.idea/
 secrets
 API/admin.txt
 API/test_post.py
+src/helpers/lastFmVars.js
 
 # macOS
 .DS_Store

@@ -149,7 +149,7 @@ export default defaultStyles = StyleSheet.create({
     paddingRight: 50,
     width: 200,
     borderRadius: 5, //borderRadius curves edges!
-    borderWidth: 1,
+    borderWidth: 2,
   },
   signupButton: {
     alignItems: "center",
@@ -160,6 +160,6 @@ export default defaultStyles = StyleSheet.create({
     paddingRight: 20,
     width: 200,
     borderRadius: 5, //borderRadius curves edges!
-    borderWidth: 1,
+    borderWidth: 2,
   },
 });

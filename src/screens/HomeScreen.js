@@ -11,31 +11,45 @@ import { API_KEY_LASTFM } from '../helpers/lastFmVars'
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-    //this.callTester()
     //this.getRequest('https://reactnative.dev/movies.json');
 
     this.state = {
-      requestReturn: [],
+      topLastfmAlbums: [],
     };
 
-    this.callTester = this.callTester.bind(this);
-    this.getRequest = this.getRequest.bind(this);
-    this.assignApiKey = this.assignApiKey.bind(this);
+    //this.getRequest = this.getRequest.bind(this);
+    this.apiKey = this.apiKey.bind(this);
+    //this.handleLastfmTopAlbums = this.handleLastfmTopAlbums.bind(this);
   }
 
-  callTester() { //just for testing, can remove
-    tester();
+  apiKey() {
+    var API_KEY = API_KEY_LASTFM();
+    return API_KEY;
   }
 
   getTopLastfmAlbums() {
-    // feed URL here
-  }
+    // fetch data here, then pass it as a param to the album results screen (use recipEZ for easy hints)
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ this.apiKey() +'&format=json', {
+      method: 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type" : "application/json"
+      }
+    })
+      .then((response) => response.json()) //success
+      .then((json) => {
+        this.setState({ topLastfmAlbums: json}); //logs the raw JSON object
+        console.log(this.state.topLastfmAlbums.topalbums.album[0].artist.name) //arbitrary test
+      })
+      //on fail
+      .catch((error) => {
+        alert(JSON.stringify(error));
+        console.log(error);
+      }); //end fetch
 
-  assignApiKey() {
-    var API_KEY = API_KEY_LASTFM();
-  }
+  } // end function
 
-  getRequest(x) { // fetches data via get
+  /*getRequest(x) { // fetches data via get
     var data = [];
     fetch(x, {
       method: 'GET',
@@ -55,7 +69,7 @@ class HomeScreen extends React.Component {
         alert(JSON.stringify(error));
         console.error(error);
       });
-  }
+  } */
 
   render() {
     const {navigation} = this.props;
@@ -66,7 +80,7 @@ class HomeScreen extends React.Component {
        </View>
        <TouchableOpacity
          style={styles.buttonLeft}
-         onPress={() => console.log("helo")}>
+         onPress={() => this.getTopLastfmAlbums()}>
           <Text>Top Last.fm Albums</Text>
        </TouchableOpacity>
        <TouchableOpacity

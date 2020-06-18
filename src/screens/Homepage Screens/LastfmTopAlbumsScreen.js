@@ -4,6 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //import defaultStyles from '.src/screens/stylesheet';
 
+// TODO: get user variable passed as params
+
 class LastfmTopAlbumsScreen extends React.Component {
  constructor(props) {
    super(props);
@@ -20,8 +22,8 @@ class LastfmTopAlbumsScreen extends React.Component {
   }//end constructor
 
   componentDidMount() { //auto calls on load
-    const API_KEY = this.props.route.params;
-    this.getTopLastfmAlbums(API_KEY.key);
+    const params = this.props.route.params;
+    this.getTopLastfmAlbums(params.key);
   }
 
   getTopLastfmAlbums(key) {
@@ -36,7 +38,7 @@ class LastfmTopAlbumsScreen extends React.Component {
       .then((response) => response.json()) //success
       .then((json) => {
         this.setState({ userAlbums: json}); //logs the raw JSON object into state
-        console.log(this.state.userAlbums.topalbums.album[0].artist.name + ': "' + this.state.userAlbums.topalbums.album[0].name + '"') //testing
+        alert(this.state.userAlbums.topalbums.album[0].artist.name + ': "' + this.state.userAlbums.topalbums.album[0].name + '"') //testing
       })
       //on fail
       .catch((error) => {

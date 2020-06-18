@@ -4,29 +4,28 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //import defaultStyles from './stylesheet';
 
-// TODO: get username as a passed param
+// TODO: get user variables passed as params (params are an object, see the .key thing)
 
-class LastfmTopArtistsScreen extends React.Component {
+class LastfmRecentlyPlayedScreen extends React.Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
 
     this.state = {
-      userArtists: [],
+      recent: [],
     };
 
-    this.getTopLastfmArtists = this.getTopLastfmArtists.bind(this);
-
+    this.getRecentlyPlayed = this.getRecentlyPlayed.bind(this);
   }
 
   componentDidMount() {
     const params = this.props.route.params;
-    this.getTopLastfmArtists(params.key);
+    this.getRecentlyPlayed(params.key);
   }
 
-  getTopLastfmArtists(key) {
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=ScumGangWilly&api_key='+ key +'&format=json', {
+  getRecentlyPlayed(key) {
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ScumGangWilly&api_key='+ key +'&format=json', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -35,8 +34,8 @@ class LastfmTopArtistsScreen extends React.Component {
     })
       .then((response) => response.json()) //success
       .then((json) => {
-        this.setState({ userArtists: json}); //logs the raw JSON object into state
-        alert(this.state.userArtists.topartists.artist[0].name + ', ' + this.state.userArtists.topartists.artist[1].name + ', ' + this.state.userArtists.topartists.artist[2].name);
+        this.setState({ recent: json}); //logs the raw JSON object into state
+        alert('1: '+ this.state.recent.recenttracks.track[0].artist['#text'] + ': ' +this.state.recent.recenttracks.track[0].name +'. 2: '+ this.state.recent.recenttracks.track[1].artist['#text'] + ': ' + this.state.recent.recenttracks.track[1].name +'. 3: '+ this.state.recent.recenttracks.track[2].artist['#text'] + ': ' + this.state.recent.recenttracks.track[2].name)
       })
       //on fail
       .catch((error) => {
@@ -62,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LastfmTopArtistsScreen;
+export default LastfmRecentlyPlayedScreen;

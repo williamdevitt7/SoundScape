@@ -14,6 +14,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import LastfmTopAlbumsScreen from './src/screens/Homepage Screens/LastfmTopAlbumsScreen';
 import LastfmTopSongsScreen from './src/screens/Homepage Screens/LastfmTopSongsScreen';
 import LastfmTopArtistsScreen from './src/screens/Homepage Screens/LastfmTopArtistsScreen';
+import LastfmRecentlyPlayedScreen from './src/screens/Homepage Screens/LastfmRecentlyPlayedScreen';
 
 // The main hub for our app - think of it as a central station for the user to navigate from
 
@@ -34,6 +35,7 @@ export default class App extends React.Component {
         <Stack.Screen name="LastfmTopAlbums" component={LastfmTopAlbumsScreen} />
         <Stack.Screen name="LastfmTopSongs" component={LastfmTopSongsScreen} />
         <Stack.Screen name="LastfmTopArtists" component={LastfmTopArtistsScreen} />
+        <Stack.Screen name="LastfmRecentlyPlayed" component={LastfmRecentlyPlayedScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

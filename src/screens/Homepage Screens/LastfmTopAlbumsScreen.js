@@ -27,7 +27,6 @@ class LastfmTopAlbumsScreen extends React.Component {
   }
 
   getTopLastfmAlbums(key) {
-    // fetch data here, then pass it as a param to the album results screen (use recipEZ for easy hints)
     fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ key +'&format=json', {
       method: 'GET',
       headers: {

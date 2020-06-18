@@ -4,29 +4,27 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //import defaultStyles from './stylesheet';
 
-// TODO: get user variables passed as params (params are an object, see the .key thing)
-
-class LastfmTopSongsScreen extends React.Component {
+class LastfmTopArtistsScreen extends React.Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
 
     this.state = {
-      userSongs: [],
+      userArtists: [],
     };
 
-    this.getTopLastfmSongs = this.getTopLastfmSongs.bind(this);
+    this.getTopLastfmArtists = this.getTopLastfmArtists.bind(this);
 
   }
 
   componentDidMount() {
     const params = this.props.route.params;
-    this.getTopLastfmSongs(params.key);
+    this.getTopLastfmArtists(params.key);
   }
 
-  getTopLastfmSongs(key) {
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=ScumGangWilly&api_key='+ key +'&format=json', {
+  getTopLastfmArtists(key) {
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=ScumGangWilly&api_key='+ key +'&format=json', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -35,8 +33,8 @@ class LastfmTopSongsScreen extends React.Component {
     })
       .then((response) => response.json()) //success
       .then((json) => {
-        this.setState({ userSongs: json}); //logs the raw JSON object into state
-        alert(this.state.userSongs.toptracks.track[5].artist.name + ': "' + this.state.userSongs.toptracks.track[5].name +'"');
+        this.setState({ userArtists: json}); //logs the raw JSON object into state
+        alert(this.state.userArtists.topartists.artist[0].name + ', ' + this.state.userArtists.topartists.artist[1].name + ', ' + this.state.userArtists.topartists.artist[2].name);
       })
       //on fail
       .catch((error) => {
@@ -62,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LastfmTopSongsScreen;
+export default LastfmTopArtistsScreen;

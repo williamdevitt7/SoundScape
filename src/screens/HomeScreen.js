@@ -19,6 +19,7 @@ class HomeScreen extends React.Component {
     this.lastfmApiKey = this.lastfmApiKey.bind(this);
     this.passTopAlbumParams = this.passTopAlbumParams.bind(this);
     this.passTopSongParams = this.passTopSongParams.bind(this);
+    this.passTopArtistParams = this.passTopArtistParams.bind(this);
   }
 
   lastfmApiKey() {
@@ -36,6 +37,13 @@ class HomeScreen extends React.Component {
   passTopSongParams() {
     var API_KEY = this.lastfmApiKey();
     this.props.navigation.navigate('LastfmTopSongs', {
+      key: API_KEY,
+    });
+  }
+
+  passTopArtistParams() {
+    var API_KEY = this.lastfmApiKey();
+    this.props.navigation.navigate('LastfmTopArtists', {
       key: API_KEY,
     });
   }
@@ -61,7 +69,8 @@ class HomeScreen extends React.Component {
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.buttonLeft}
-         onPress={() => console.log("helo")}>
+         onPress={() => {
+           this.passTopArtistParams()}}>
           <Text>Top Last.fm Artists</Text>
        </TouchableOpacity>
        <TouchableOpacity

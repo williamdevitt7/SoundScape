@@ -16,41 +16,19 @@ class HomeScreen extends React.Component {
       topLastfmAlbums: [],
     };
 
-    this.getTopLastfmAlbums = this.getTopLastfmAlbums.bind(this);
     this.lastfmApiKey = this.lastfmApiKey.bind(this);
-    this.passParams = this.passParams.bind(this);
+    this.passTopAlbumParams = this.passTopAlbumParams.bind(this);
   }
 
   lastfmApiKey() {
-    var API_KEY = API_KEY_LASTFM();
+    let API_KEY = API_KEY_LASTFM();
     return API_KEY;
   }
 
-  getTopLastfmAlbums() {
-    // fetch data here, then pass it as a param to the album results screen (use recipEZ for easy hints)
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ this.lastfmApiKey() +'&format=json', {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        "Content-Type" : "application/json"
-      }
-    })
-      .then((response) => response.json()) //success
-      .then((json) => {
-        this.setState({ topLastfmAlbums: json}); //logs the raw JSON object into state
-        //console.log(this.state.topLastfmAlbums);
-        //console.log(this.state.topLastfmAlbums.topalbums.album[0].artist.name + ': "' + this.state.topLastfmAlbums.topalbums.album[0].name + '"') //testing
-      })
-      //on fail
-      .catch((error) => {
-        alert(JSON.stringify(error));
-        console.log(error);
-      }); //end fetch
-  } // end function
-
-  passParams() {
+  passTopAlbumParams() {
+    var API_KEY = this.lastfmApiKey();
     this.props.navigation.navigate('LastfmTopAlbums', {
-      response: this.state.topLastfmAlbums,
+      key: API_KEY, //passes API key as a param to the next screen
     });
   }
 
@@ -64,8 +42,7 @@ class HomeScreen extends React.Component {
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.getTopLastfmAlbums()
-           this.passParams()}}>
+           this.passTopAlbumParams()}}>
           <Text>Top Last.fm Albums</Text>
        </TouchableOpacity>
        <TouchableOpacity

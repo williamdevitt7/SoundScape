@@ -6,6 +6,7 @@ import defaultStyles from './stylesheet';
 
 // Login form screen. User logs into their existing account here.
 // TODO:implement sendLogin function, aka make POST request with user's inputted data and navigate with params to home
+// TODO: pass user info thats needed as params
 
 class LoginScreen extends React.Component {
  constructor(props) {

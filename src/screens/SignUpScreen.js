@@ -12,6 +12,7 @@ import defaultStyles from './stylesheet';
 // TODO: lastfm username must be passed to the database
 // TODO: make sure this POST request works
 // TODO: on success of account creation, must pass info as params (nav) to Home (see recipEZ)
+// TODO: pass needed user info as params
 
 class SignUpScreen extends React.Component {
   constructor(props) {

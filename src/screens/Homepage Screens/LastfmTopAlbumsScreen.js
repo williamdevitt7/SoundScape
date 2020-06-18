@@ -10,32 +10,39 @@ class LastfmTopAlbumsScreen extends React.Component {
    const { navigation } = this.props;
    const { route } = this.props;
 
-   // TODO: the JSON perfoms super weirdly. either fix it, or move all the actual API calling stuff to this screen.
-
   //state bracket
   this.state = {
     userAlbums: [],
   };
 
-  this.doStuff = this.doStuff.bind(this);
-  this.handlePassedParams = this.handlePassedParams.bind(this);
+  this.getTopLastfmAlbums = this.getTopLastfmAlbums.bind(this);
 
   }//end constructor
 
   componentDidMount() { //auto calls on load
-    var response = this.props.route.params;
-    console.log(response); //this works, the var response holds the correct json object
-    //this.handlePassedParams(response);
-    //this.doStuff();
+    const API_KEY = this.props.route.params;
+    this.getTopLastfmAlbums(API_KEY.key);
   }
 
-  handlePassedParams(text) {
-    this.setState({ userAlbums: text });
-  }
-
-  doStuff() {
-    console.log(this.state.userAlbums.topalbums);
-  }
+  getTopLastfmAlbums(key) {
+    // fetch data here, then pass it as a param to the album results screen (use recipEZ for easy hints)
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ key +'&format=json', {
+      method: 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type" : "application/json"
+      }
+    })
+      .then((response) => response.json()) //success
+      .then((json) => {
+        this.setState({ userAlbums: json}); //logs the raw JSON object into state
+        console.log(this.state.userAlbums.topalbums.album[0].artist.name + ': "' + this.state.userAlbums.topalbums.album[0].name + '"') //testing
+      })
+      //on fail
+      .catch((error) => {
+        console.log(error);
+      }); //end fetch
+  } // end function
 
   render() {
     const {navigation} = this.props;

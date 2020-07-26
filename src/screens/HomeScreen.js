@@ -23,6 +23,8 @@ class HomeScreen extends React.Component {
     this.passRecentlyPlayedParams = this.passRecentlyPlayedParams.bind(this);
   }
 
+  // LAST.FM FUNCTION CALLS
+
   lastfmApiKey() {
     let API_KEY = API_KEY_LASTFM();
     return API_KEY;
@@ -56,6 +58,27 @@ class HomeScreen extends React.Component {
     });
   }
 
+  // SPOTIFY FUNCTIONS. //
+
+  passTopAllTimeParams () {
+    var API_KEY = this.lastfmApiKey();
+    this.props.navigation.navigate('SpotifyTopAllTime', {
+      key: API_KEY,
+    });
+  }
+
+  passCreatePlaylistParams () {
+    var API_KEY = this.lastfmApiKey();
+    this.props.navigation.navigate('CreatePlaylist', {
+      key: API_KEY,
+    });
+  }
+  // features:
+  // 1. top all time tracks / Artists
+  // 2. create spotify playlist from last fm top songs
+  // 3. get reccomendations
+
+
   render() {
     const {navigation} = this.props;
     return (
@@ -87,6 +110,18 @@ class HomeScreen extends React.Component {
            this.passRecentlyPlayedParams()}}>
           <Text>Last.fm Recently Played</Text>
        </TouchableOpacity>
+       <TouchableOpacity
+         style={styles.buttonLeft}
+         onPress={() => {
+           this.passTopAllTimeParams()}}>
+          <Text>Spotify Top Tracks & Artists</Text>
+       </TouchableOpacity>
+       <TouchableOpacity
+         style={styles.buttonLeft}
+         onPress={() => {
+           this.passCreatePlaylistParams()}}>
+          <Text>Create Spotify Playlist</Text>
+       </TouchableOpacity>
       </SafeAreaView>
     );
   }
@@ -94,6 +129,10 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  buttonContainer: {
     flex: 1,
   },
   buttonLeft: {
@@ -103,11 +142,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'row',
+    margin: 5,
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 20,
     paddingRight: 20,
-    width: 175,
+    width: 300,
     borderRadius: 15, //borderRadius curves edges!
     borderWidth: 2,
   },

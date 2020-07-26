@@ -142,24 +142,24 @@ export default defaultStyles = StyleSheet.create({
   },
   loginButton: {
     alignItems: "center",
-    backgroundColor: '#fffafa',
+    //backgroundColor: '#fffafa',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 50,
     paddingRight: 50,
     width: 200,
     borderRadius: 5, //borderRadius curves edges!
-    borderWidth: 2,
+    borderWidth: 1,
   },
   signupButton: {
     alignItems: "center",
-    backgroundColor: '#fffafa',
+    //backgroundColor: '#fffafa',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
     paddingRight: 20,
     width: 200,
     borderRadius: 5, //borderRadius curves edges!
-    borderWidth: 2,
+    borderWidth: 1,
   },
 });

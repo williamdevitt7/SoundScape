@@ -142,6 +142,7 @@ export default defaultStyles = StyleSheet.create({
   },
   loginButton: {
     alignItems: "center",
+    marginTop: 10,
     //backgroundColor: '#fffafa',
     paddingTop: 10,
     paddingBottom: 10,
@@ -153,6 +154,7 @@ export default defaultStyles = StyleSheet.create({
   },
   signupButton: {
     alignItems: "center",
+    marginTop: 10,
     //backgroundColor: '#fffafa',
     paddingTop: 10,
     paddingBottom: 10,

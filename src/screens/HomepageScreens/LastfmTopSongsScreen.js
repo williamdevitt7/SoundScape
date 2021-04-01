@@ -4,29 +4,29 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //import defaultStyles from './stylesheet';
 
-// TODO: get username as a passed param
+// TODO: get user variables passed as params (params are an object, see the .key thing)
 
-class LastfmTopArtistsScreen extends React.Component {
+class LastfmTopSongsScreen extends React.Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
 
     this.state = {
-      userArtists: [],
+      userSongs: [],
     };
 
-    this.getTopLastfmArtists = this.getTopLastfmArtists.bind(this);
+    this.getTopLastfmSongs = this.getTopLastfmSongs.bind(this);
 
   }
 
   componentDidMount() {
     const params = this.props.route.params;
-    this.getTopLastfmArtists(params.key);
+    this.getTopLastfmSongs(params.key, params.username);
   }
 
-  getTopLastfmArtists(key) {
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=ScumGangWilly&api_key='+ key +'&format=json', {
+  getTopLastfmSongs(key, username) {
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user='+ username +'&api_key='+ key +'&format=json', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -35,8 +35,8 @@ class LastfmTopArtistsScreen extends React.Component {
     })
       .then((response) => response.json()) //success
       .then((json) => {
-        this.setState({ userArtists: json}); //logs the raw JSON object into state
-        alert(this.state.userArtists.topartists.artist[0].name + ', ' + this.state.userArtists.topartists.artist[1].name + ', ' + this.state.userArtists.topartists.artist[2].name);
+        this.setState({ userSongs: json}); //logs the raw JSON object into state
+        alert(this.state.userSongs.toptracks.track[0].artist.name + ': "' + this.state.userSongs.toptracks.track[0].name +'"');
       })
       //on fail
       .catch((error) => {
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LastfmTopArtistsScreen;
+export default LastfmTopSongsScreen;

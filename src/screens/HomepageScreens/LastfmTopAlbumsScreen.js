@@ -23,11 +23,11 @@ class LastfmTopAlbumsScreen extends React.Component {
 
   componentDidMount() { //auto calls on load
     const params = this.props.route.params;
-    this.getTopLastfmAlbums(params.key);
+    this.getTopLastfmAlbums(params.key, params.username);
   }
 
-  getTopLastfmAlbums(key) {
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ScumGangWilly&api_key='+ key +'&format=json', {
+  getTopLastfmAlbums(key, username) {
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user='+ username +'&api_key='+ key +'&format=json', {
       method: 'GET',
       headers: {
         Accept: "application/json",

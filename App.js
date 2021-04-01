@@ -11,12 +11,12 @@ import FirstScreen from './src/screens/FirstScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
-import LastfmTopAlbumsScreen from './src/screens/Homepage Screens/LastfmTopAlbumsScreen';
-import LastfmTopSongsScreen from './src/screens/Homepage Screens/LastfmTopSongsScreen';
-import LastfmTopArtistsScreen from './src/screens/Homepage Screens/LastfmTopArtistsScreen';
-import LastfmRecentlyPlayedScreen from './src/screens/Homepage Screens/LastfmRecentlyPlayedScreen';
-import SpotifyTopAllScreen from './src/screens/Homepage Screens/SpotifyTopAllScreen';
-import CreatePlaylistScreen from './src/screens/Homepage Screens/CreatePlaylistScreen';
+import LastfmTopAlbumsScreen from './src/screens/HomepageScreens/LastfmTopAlbumsScreen';
+import LastfmTopSongsScreen from './src/screens/HomepageScreens/LastfmTopSongsScreen';
+import LastfmTopArtistsScreen from './src/screens/HomepageScreens/LastfmTopArtistsScreen';
+import LastfmRecentlyPlayedScreen from './src/screens/HomepageScreens/LastfmRecentlyPlayedScreen';
+import SpotifyTopAllScreen from './src/screens/HomepageScreens/SpotifyTopAllScreen';
+import CreatePlaylistScreen from './src/screens/HomepageScreens/CreatePlaylistScreen';
 
 // The main hub for our app - think of it as a central station for the user to navigate from
 

@@ -6,27 +6,26 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 // TODO: get user variables passed as params (params are an object, see the .key thing)
 
-class LastfmTopSongsScreen extends React.Component {
+class LastfmRecentlyPlayedScreen extends React.Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
 
     this.state = {
-      userSongs: [],
+      recent: [],
     };
 
-    this.getTopLastfmSongs = this.getTopLastfmSongs.bind(this);
-
+    this.getRecentlyPlayed = this.getRecentlyPlayed.bind(this);
   }
 
   componentDidMount() {
     const params = this.props.route.params;
-    this.getTopLastfmSongs(params.key);
+    this.getRecentlyPlayed(params.key, params.username);
   }
 
-  getTopLastfmSongs(key) {
-    fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=ScumGangWilly&api_key='+ key +'&format=json', {
+  getRecentlyPlayed(key, username) {
+    fetch('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+ username +'&api_key='+ key +'&format=json', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -35,8 +34,8 @@ class LastfmTopSongsScreen extends React.Component {
     })
       .then((response) => response.json()) //success
       .then((json) => {
-        this.setState({ userSongs: json}); //logs the raw JSON object into state
-        alert(this.state.userSongs.toptracks.track[5].artist.name + ': "' + this.state.userSongs.toptracks.track[5].name +'"');
+        this.setState({ recent: json}); //logs the raw JSON object into state
+        alert('1: '+ this.state.recent.recenttracks.track[0].artist['#text'] + ': ' +this.state.recent.recenttracks.track[0].name +'. 2: '+ this.state.recent.recenttracks.track[1].artist['#text'] + ': ' + this.state.recent.recenttracks.track[1].name +'. 3: '+ this.state.recent.recenttracks.track[2].artist['#text'] + ': ' + this.state.recent.recenttracks.track[2].name)
       })
       //on fail
       .catch((error) => {
@@ -62,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LastfmTopSongsScreen;
+export default LastfmRecentlyPlayedScreen;

@@ -8,76 +8,26 @@ import { API_KEY_LASTFM } from '../helpers/lastFmVars'
 
 // Homepage: this is the page logged in users land on - displays stuff
 
+// TODO: grab username from database rather than hardcode
+
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      topLastfmAlbums: [],
+      current: []
     };
 
-    this.lastfmApiKey = this.lastfmApiKey.bind(this);
-    this.passTopAlbumParams = this.passTopAlbumParams.bind(this);
-    this.passTopSongParams = this.passTopSongParams.bind(this);
-    this.passTopArtistParams = this.passTopArtistParams.bind(this);
-    this.passRecentlyPlayedParams = this.passRecentlyPlayedParams.bind(this);
+    this.passParametersAndNavigate = this.passParametersAndNavigate.bind(this);
   }
 
-  // LAST.FM FUNCTION CALLS
-
-  lastfmApiKey() {
-    let API_KEY = API_KEY_LASTFM();
-    return API_KEY;
-  }
-
-  passTopAlbumParams() {
-    var API_KEY = this.lastfmApiKey();
-    this.props.navigation.navigate('LastfmTopAlbums', {
-      key: API_KEY, //passes API key as a param to the next screen
+  passParametersAndNavigate(text) {
+    this.props.navigation.navigate(text, {
+      key: API_KEY_LASTFM(), //passes API key as a param to the next screen
+      username: 'ScumGangWilly',
+      spotify_key: '',
     });
   }
-
-  passTopSongParams() {
-    var API_KEY = this.lastfmApiKey();
-    this.props.navigation.navigate('LastfmTopSongs', {
-      key: API_KEY,
-    });
-  }
-
-  passTopArtistParams() {
-    var API_KEY = this.lastfmApiKey();
-    this.props.navigation.navigate('LastfmTopArtists', {
-      key: API_KEY,
-    });
-  }
-
-  passRecentlyPlayedParams() {
-    var API_KEY = this.lastfmApiKey();
-    this.props.navigation.navigate('LastfmRecentlyPlayed', {
-      key: API_KEY,
-    });
-  }
-
-  // SPOTIFY FUNCTIONS. //
-
-  passTopAllTimeParams () {
-    var API_KEY = this.lastfmApiKey();
-    this.props.navigation.navigate('SpotifyTopAllTime', {
-      key: API_KEY,
-    });
-  }
-
-  passCreatePlaylistParams () {
-    var API_KEY = this.lastfmApiKey();
-    this.props.navigation.navigate('CreatePlaylist', {
-      key: API_KEY,
-    });
-  }
-  // features:
-  // 1. top all time tracks / Artists
-  // 2. create spotify playlist from last fm top songs
-  // 3. get reccomendations
-
 
   render() {
     const {navigation} = this.props;
@@ -89,37 +39,37 @@ class HomeScreen extends React.Component {
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.passTopAlbumParams()}}>
+           this.passParametersAndNavigate('LastfmTopAlbums')}}>
           <Text>Top Last.fm Albums</Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.passTopSongParams()}}>
+           this.passParametersAndNavigate('LastfmTopSongs')}}>
           <Text>Top Last.fm Tracks</Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.passTopArtistParams()}}>
+           this.passParametersAndNavigate('LastfmTopArtists')}}>
           <Text>Top Last.fm Artists</Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.passRecentlyPlayedParams()}}>
+           this.passParametersAndNavigate('LastfmRecentlyPlayed')}}>
           <Text>Last.fm Recently Played</Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.passTopAllTimeParams()}}>
+           this.passParametersAndNavigate('SpotifyTopAllTime')}}>
           <Text>Spotify Top Tracks & Artists</Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.buttonLeft}
          onPress={() => {
-           this.passCreatePlaylistParams()}}>
+           this.passParametersAndNavigate('CreatePlaylist')}}>
           <Text>Create Spotify Playlist</Text>
        </TouchableOpacity>
       </SafeAreaView>
